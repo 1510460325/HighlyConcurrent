@@ -17,6 +17,5 @@ public class UserServiceTest extends BaseTest {
     public void test() {
         System.out.println(userService.queryById(1));
         System.out.println(userService.queryById(1));
-
     }
 }
