@@ -4,6 +4,7 @@ import cn.wzy.dao.Impl.RedisDao;
 import cn.wzy.dao.UserDao;
 import cn.wzy.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -21,8 +22,12 @@ public class UserService {
     @Autowired
     private RedisDao redisDao;
 
+    @Autowired
+    private KafkaTemplate<String, String> kafkaTemplate;
+
     @Transactional
     public User queryById(int id) {
+        kafkaTemplate.send("test","" + System.currentTimeMillis(),"kk" + id);
         userDao.selectByPrimaryKey(id);
         User user = redisDao.getUser(id);
         if (user == null) {

@@ -81,4 +81,6 @@
         </mvc:message-converters>
     </mvc:annotation-driven>
     <import resource="classpath:spring/spring-tx.xml"/>
+    <import resource="classpath:spring/kafka/spring-kafka-consumer.xml"/>
+    <import resource="classpath:spring/kafka/spring-kafka-producer.xml"/>
 </beans>
